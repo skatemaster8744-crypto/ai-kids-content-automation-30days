@@ -1,30 +1,43 @@
-# FREE Workflow for Kids Content Creation
+# Free Production Workflow
 
-## Workflow A: Slideshow Method (Best Free Option)
-1. Generate 5-10 images in Ideogram.
-2. Write baby/farm script in ChatGPT.
-3. Convert script to voiceover with ElevenLabs / Natural Reader.
+## Workflow 1: Slideshow method (best for zero-cost use)
+1. Generate 5-10 character/background images using free AI tools.
+2. Write the story or rhyme in ChatGPT / Gemini.
+3. Convert the script into voiceover using free TTS.
 4. Import images into CapCut.
-5. Apply transitions and zoom effects.
-6. Add captions and royalty-free music.
-7. Export 720p/1080p video.
-8. Upload to YouTube.
+5. Add motion effects: zoom, pan, fade, dissolve.
+6. Add captions automatically in CapCut.
+7. Add music from YouTube Audio Library.
+8. Export in 1080p.
+9. Upload to YouTube.
 
-## Workflow B: AI Avatar Method (Only for free trial days)
-1. Use D-ID or HeyGen for a few videos.
-2. For all remaining videos, use slideshow method.
-3. Change voice, scene, and background to keep content fresh.
+## Workflow 2: AI avatar method
+Use this only if free trial is available.
+1. Create a few avatar-based videos with D-ID or HeyGen.
+2. Use slideshow method for all scheduled videos afterwards.
+3. This keeps the system free while testing premium features.
 
-## Workflow C: Batch Mode
-- Generate images in batches of 10.
-- Create scripts in batches of 5.
-- Edit videos in batches of 3.
-- Upload every 2-3 days.
+## Workflow 3: Batch workflow
+- Generate 5 prompts in one session
+- Create 5 images in one session
+- Write 5 scripts in one batch
+- Edit 3 videos in one CapCut session
+- Upload every 2-3 days
 
-## Ideal Daily Routine
-- 30 minutes: prompts + scripts
-- 45 minutes: images
-- 45 minutes: editing
-- 10 minutes: upload
+## Best daily routine
+- 30 min: script writing
+- 30 min: image generation
+- 20 min: voiceover
+- 45 min: editing
+- 10 min: upload
 
-This yields 1-2 videos per day with a free workflow.
+## Tools recommended for this free workflow
+- ChatGPT / Gemini
+- Ideogram or Canva
+- ElevenLabs Free or Natural Reader
+- CapCut Desktop
+- YouTube Audio Library
+- Google Drive
+
+## Final rule
+Use templates and reuse the same baby character/farm asset set across many videos to reduce time and credit use.
