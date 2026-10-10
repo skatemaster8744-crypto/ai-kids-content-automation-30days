@@ -1,18 +1,18 @@
 # Free Tool Stack
 
-## Script generation
+## Script Generation
 - ChatGPT Free
 - Gemini Free
 - Claude Free
 - Perplexity Free
 
-## Image generation
+## Image Creation
 - Ideogram Free
 - Canva Free
 - Pixlr
 - Leonardo AI (free tier)
 
-## Voice generation
+## Voiceover
 - ElevenLabs Free
 - Natural Reader
 - Google TTS
@@ -29,7 +29,7 @@
 - Bensound
 - Incompetech
 
-## Storage and organization
+## Storage
 - Google Drive
 - Dropbox Free
 - OneDrive
@@ -39,7 +39,7 @@
 - n8n Free
 - Zapier Free
 
-## Best free setup for your project
+## Best Free Setup for You
 - Scripts: ChatGPT or Gemini
 - Images: Ideogram + Canva
 - Voice: ElevenLabs Free

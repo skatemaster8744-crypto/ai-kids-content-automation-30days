@@ -1,9 +1,6 @@
-# 30-Day Content Calendar
+# 30-Day Program
 
-## Goal
-Create 30 videos in 30 days with a free workflow.
-
-## Output split
+## Output Breakdown
 - Shorts: 20
 - Long videos: 6
 - Compilations: 4
@@ -54,17 +51,14 @@ Create 30 videos in 30 days with a free workflow.
 | 29 | Long | Farm Journey |
 | 30 | Long | Channel Intro / Best of Month |
 
-## Daily production template
+## Daily Production Template
 - Script: 15-20 min
-- Image generation: 20-30 min
+- Images: 20-30 min
 - Voiceover: 10 min
-- Edit in CapCut: 30-45 min
+- Editing: 30-45 min
 - Upload: 10 min
 
-## Best posting rhythm
-- 4 Shorts per week
+## Best Publishing Rhythm
+- 3-4 Shorts per week
 - 1 Long video per week
 - 1 compilation every 7 days
-
-## Notes
-This is a template calendar. You can change titles and scenes based on the content you generate using AI prompts.

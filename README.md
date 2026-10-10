@@ -1,58 +1,64 @@
-# FREE AI Kids Content Automation
+# FREE AI Kids Content Automation System
 
-This project is a free-tier AI automation system for creating kids content in the exact style of nursery rhyme / cartoon baby / farm animal videos, without paying for expensive subscriptions.
+This project is designed for a zero-budget YouTube channel focused on cute baby, farm animal, and nursery rhyme videos. It uses free tools only and follows a realistic 30-day production plan.
 
-## What this project includes
-- 30-day content calendar
-- prompt pack for short and long videos
-- free AI tools stack
-- production workflow
-- YouTube upload checklist
-- batching strategy
+## Best Strategy for You
+Use the free slideshow workflow with CapCut, not paid AI avatar tools.
 
-## Goal
-Create a consistent channel with:
-- Shorts: 20 videos
-- Long videos: 6 videos
-- Compilations: 4 videos
+Why this is best:
+- No paid subscriptions needed
+- Works with free AI tools
+- Reuses the same visual style
+- Easy to batch produce
+- Suitable for Shorts + Long videos
+
+## Final 30-Day Goal
+- 20 Shorts
+- 6 Long videos
+- 4 Compilations
 - Total: 30 videos in 30 days
 
-## Realistic free stack
-- Script: ChatGPT Free, Gemini Free, Claude Free
-- Images: Ideogram Free, Canva Free, Pixlr
-- Voiceover: ElevenLabs Free, Natural Reader, Google TTS
-- Video editing: CapCut Desktop Free
+## Free Tool Stack
+- Scripts: ChatGPT Free / Gemini Free / Claude Free
+- Images: Ideogram Free / Canva Free / Pixlr
+- Voiceover: ElevenLabs Free / Natural Reader / Google TTS
+- Editing: CapCut Desktop Free
 - Music: YouTube Audio Library
 - Storage: Google Drive
-- Automation: Google Sheets + Apps Script / n8n free
+- Scheduling: Google Sheets / n8n free
 
-## Important note
-There is no service that guarantees unlimited free credits forever. The correct strategy is to use free tiers, batch work, and reuse assets so the system remains sustainable and low-cost.
+## Recommended Workflow
+1. Generate ideas and script prompts
+2. Create 5-10 matching images
+3. Make the voiceover
+4. Import into CapCut
+5. Add zoom, transitions, subtitles, music
+6. Export and upload
 
-## Recommended content style
-- Cute baby in bright cartoon scenes
-- Farm animals: goat, cow, horse, chicken
-- Green meadows, blue sky, warm sunlight
-- Simple nursery rhyme rhythm
-- Alphabet, counting, learning, bedtime stories
+## Core Production Rule
+Reuse the same baby character and farm scene assets across many videos. This reduces time, credit usage, and burnout.
 
-## Fast start workflow
-1. Write scripts in ChatGPT or Gemini
-2. Generate 5-10 images in Ideogram or Canva
-3. Turn script into voiceover using free TTS
-4. Edit in CapCut
-5. Add captions, music, zooms, transitions
-6. Export and upload to YouTube
-
-## Project structure
+## Files Included
 - README.md
 - docs/30-day-plan.md
 - docs/workflow.md
 - prompts.md
 - tools.md
 
-## Repo links
-- GitHub: https://github.com/skatemaster8744-crypto/ai-kids-content-automation-30days
+## Best Simple Daily Routine
+- 30 min: scripting
+- 30 min: image generation
+- 20 min: voiceover
+- 45 min: editing
+- 10 min: upload
 
-## Suggested next step
-Start with one short video first, then build a batch system for 5 videos before scaling.
+## 30-Day Content Split
+- 4 Shorts per week
+- 1 Long video per week
+- 1 compilation every week
+
+## Start Here
+Start with 5 short videos in one batch, then repeat. Do not try to do everything at once.
+
+## Important Note
+There is no permanent unlimited free credit system. The correct no-budget approach is to rely on free tiers, batching, and reusable assets.

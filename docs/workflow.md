@@ -1,43 +1,33 @@
-# Free Production Workflow
+# Workflow for Zero-Budget Production
 
-## Workflow 1: Slideshow method (best for zero-cost use)
-1. Generate 5-10 character/background images using free AI tools.
-2. Write the story or rhyme in ChatGPT / Gemini.
-3. Convert the script into voiceover using free TTS.
+## Best Method: CapCut Slideshow Workflow
+1. Generate 5-10 baby/farm images.
+2. Write script in ChatGPT or Gemini.
+3. Convert to voiceover using free TTS.
 4. Import images into CapCut.
-5. Add motion effects: zoom, pan, fade, dissolve.
-6. Add captions automatically in CapCut.
-7. Add music from YouTube Audio Library.
-8. Export in 1080p.
-9. Upload to YouTube.
+5. Add motion: zoom, pan, fade, dissolve.
+6. Add captions and music.
+7. Export in 1080p.
+8. Upload to YouTube.
 
-## Workflow 2: AI avatar method
-Use this only if free trial is available.
-1. Create a few avatar-based videos with D-ID or HeyGen.
-2. Use slideshow method for all scheduled videos afterwards.
-3. This keeps the system free while testing premium features.
-
-## Workflow 3: Batch workflow
-- Generate 5 prompts in one session
-- Create 5 images in one session
-- Write 5 scripts in one batch
-- Edit 3 videos in one CapCut session
+## Batch Workflow
+- Generate ideas in sets of 5
+- Create images in batches of 10
+- Write scripts in batches of 5
+- Edit in batches of 3 videos
 - Upload every 2-3 days
 
-## Best daily routine
+## Daily Routine
 - 30 min: script writing
 - 30 min: image generation
 - 20 min: voiceover
 - 45 min: editing
 - 10 min: upload
 
-## Tools recommended for this free workflow
-- ChatGPT / Gemini
-- Ideogram or Canva
-- ElevenLabs Free or Natural Reader
-- CapCut Desktop
-- YouTube Audio Library
-- Google Drive
+## What to avoid
+- Paid avatar tools in the beginning
+- Complex automation without a process
+- Generating random styles instead of one consistent character library
 
-## Final rule
-Use templates and reuse the same baby character/farm asset set across many videos to reduce time and credit use.
+## Best practice
+Create one consistent baby character and farm scene style, then reuse it across all videos.
