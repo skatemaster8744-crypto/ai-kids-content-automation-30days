@@ -124,7 +124,7 @@ def render(story, mode, scene_seconds):
         run(["ffmpeg","-y","-loop","1","-i",str(img_path),"-t",str(scene_seconds),"-vf",vf,
              "-an","-c:v","libx264","-preset","ultrafast","-pix_fmt","yuv420p",str(clip)])
         scene_files.append(clip)
-        audio_files.append(audio_path)
+        audio_files.append(audio_segment)
         captions.append((total_time, total_time+scene_seconds, scene["narration"]))
         total_time += scene_seconds
     concat = scenes_dir / "concat.txt"
