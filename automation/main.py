@@ -2,7 +2,7 @@
 Creates animated still-image videos (Ken Burns motion), narration, captions and thumbnail.
 It does not generate full AI video footage; scene images are animated into a video with FFmpeg.
 """
-import base64, json, os, subprocess
+import base64, json, os, subprocess, time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
@@ -26,6 +26,23 @@ def log(message):
 def run(cmd):
     subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+def post_with_retries(url, **kwargs):
+    last = None
+    for attempt in range(1, 4):
+        try:
+            response = requests.post(url, **kwargs)
+            if response.status_code in (429, 500, 502, 503, 504):
+                last = RuntimeError(f"Transient HTTP {response.status_code}: {response.text[:300]}")
+                time.sleep(attempt * 8)
+                continue
+            response.raise_for_status()
+            return response
+        except (requests.RequestException, RuntimeError) as exc:
+            last = exc
+            if attempt < 3:
+                time.sleep(attempt * 8)
+    raise RuntimeError(f"Provider request failed after 3 attempts: {last}")
+
 def generate_story():
     mode = VIDEO_MODE
     if mode == "auto":
@@ -39,14 +56,13 @@ Return ONLY valid JSON with keys title, description, tags (array of 5-10 strings
 Each scene object has narration (one or two simple English sentences) and image_prompt (detailed visual prompt).
 Keep one main character design consistent across every image. No copyrighted characters, brand names, frightening imagery, violence, unsafe imitation, text in images, or watermarks.
 Video format: {mode}. Each scene will last about {duration} seconds. Make the story complete and original."""
-    response = requests.post(
+    response = post_with_retries(
         "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
         params={"key": API_KEY},
         json={"contents":[{"parts":[{"text":prompt}]}],
               "generationConfig":{"temperature":0.8,"responseMimeType":"application/json"}},
         timeout=90,
     )
-    response.raise_for_status()
     raw = response.json()["candidates"][0]["content"]["parts"][0]["text"]
     story = json.loads(raw)
     if len(story.get("scenes", [])) != scenes_n:
@@ -57,10 +73,8 @@ def generate_image(prompt: str, destination: Path):
     if not HF_TOKEN:
         raise RuntimeError("HF_TOKEN is missing. Add a Hugging Face token with inference access.")
     url = f"https://router.huggingface.co/hf-inference/models/{quote(MODEL, safe='/')}"
-    response = requests.post(url, headers={"Authorization": f"Bearer {HF_TOKEN}", "Content-Type":"application/json"},
+    response = post_with_retries(url, headers={"Authorization": f"Bearer {HF_TOKEN}", "Content-Type":"application/json"},
                              json={"inputs":prompt, "options":{"wait_for_model":True}}, timeout=180)
-    if response.status_code >= 400:
-        raise RuntimeError(f"Image provider error {response.status_code}: {response.text[:500]}")
     if not response.headers.get("content-type","").startswith("image/"):
         raise RuntimeError(f"Image provider did not return an image: {response.text[:300]}")
     destination.write_bytes(response.content)
@@ -164,6 +178,11 @@ def upload(video, thumbnail, story):
     privacy = os.getenv("YOUTUBE_PRIVACY_STATUS","private")
     status = {"privacyStatus": privacy, "selfDeclaredMadeForKids": MADE_FOR_KIDS}
     publish_at = os.getenv("YOUTUBE_PUBLISH_AT","").strip()
+    auto_schedule = os.getenv("AUTO_SCHEDULE","false").lower() == "true"
+    if auto_schedule and privacy == "private" and not publish_at:
+        from datetime import timedelta
+        delay_hours = max(1, int(os.getenv("PUBLISH_DELAY_HOURS", "24")))
+        publish_at = (datetime.now(timezone.utc) + timedelta(hours=delay_hours)).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     if publish_at and privacy == "private":
         status["publishAt"] = publish_at
     body = {"snippet":{"title":title,"description":description,"tags":tags,"categoryId":os.getenv("YOUTUBE_CATEGORY_ID","1")},
@@ -176,6 +195,26 @@ def upload(video, thumbnail, story):
     except Exception as exc:
         log(f"Thumbnail upload failed (video uploaded): {exc}")
     return f"https://www.youtube.com/watch?v={video_id}"
+
+def safety_review(story):
+    """Ask a second model call to block obvious child-safety and originality risks."""
+    prompt = """Review this proposed children's cartoon story for ages 3-7. Return ONLY JSON:
+    {"pass": true/false, "reasons": ["..."]}.
+    Fail if it includes violence, sexual content, dangerous imitation, hateful content,
+    frightening distress, unsafe child behavior, copyrighted characters, brands, or unclear
+    material. Be conservative; if uncertain, fail. This is a screening layer, not a guarantee.
+    STORY JSON: """ + json.dumps(story, ensure_ascii=False)
+    response = post_with_retries(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        params={"key": API_KEY},
+        json={"contents":[{"parts":[{"text":prompt}]}],
+              "generationConfig":{"temperature":0.1,"responseMimeType":"application/json"}},
+        timeout=90,
+    )
+    result = json.loads(response.json()["candidates"][0]["content"]["parts"][0]["text"])
+    if result.get("pass") is not True:
+        raise RuntimeError("AI safety review failed; upload blocked: " + json.dumps(result.get("reasons", [])))
+    return result
 
 def main():
     log("Starting kids video pipeline.")
@@ -190,8 +229,10 @@ def main():
         raise RuntimeError("Safety keyword check failed; video will not be uploaded.")
     if not story.get("title") or not story.get("scenes"):
         raise RuntimeError("Quality check failed: missing title/scenes.")
+    safety = safety_review(story)
+    (OUT / "safety_review.json").write_text(json.dumps(safety, indent=2), encoding="utf-8")
     url = upload(video, thumb, story)
-    report = {"status":"uploaded","url":url,"mode":mode,"title":story["title"],
+    report = {"status":"uploaded_or_scheduled","url":url,"mode":mode,"title":story["title"],
               "video_path":str(video),"captions_path":str(captions),"created_at":datetime.now(timezone.utc).isoformat()}
     (OUT / "result.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
     log(f"Completed: {url}")
