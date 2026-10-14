@@ -50,6 +50,8 @@ jobs:
           BACKGROUND_MUSIC_BASE64: ${{ secrets.BACKGROUND_MUSIC_BASE64 }}
           VIDEO_MODE: ${{ inputs.video_mode || 'auto' }}
           YOUTUBE_PRIVACY_STATUS: private
+          AUTO_SCHEDULE: "true"
+          PUBLISH_DELAY_HOURS: "24"
           MADE_FOR_KIDS: "true"
           OUTPUT_DIR: output
         run: python automation/main.py
