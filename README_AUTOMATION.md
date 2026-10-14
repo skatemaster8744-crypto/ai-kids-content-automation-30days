@@ -11,4 +11,4 @@ A free-first GitHub Actions prototype for creating kids cartoon **animated slide
 ## Pipeline
 Story generation → scene image generation → English narration → FFmpeg motion/assembly → captions → thumbnail → validation → private YouTube upload.
 
-The pipeline is not a full AI text-to-video generator and cannot promise unlimited free generation. Provider free quotas and model access vary. Public publishing is intentionally not enabled in the initial version; see the deployment guide.
+The pipeline is not a full AI text-to-video generator and cannot promise unlimited free generation. Provider free quotas and model access vary. The workflow runs an AI safety screen, then uploads privately with a planned publish time about 24 hours later. Automated screening can miss issues; inspect early runs and cancel scheduled publishing if needed. See the deployment guide.
