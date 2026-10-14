@@ -9,13 +9,14 @@ This adds a GitHub Actions pipeline that creates a story, generates scene images
 - Scene images via Hugging Face Inference API (model access and free quota can change).
 - English voice-over via gTTS; FFmpeg makes Ken Burns-style motion clips and joins them.
 - SRT captions and a thumbnail are generated.
-- Basic output validation, then YouTube upload with the channel's OAuth token.
+- Basic output validation plus a second Gemini safety-screening pass; failures block upload.
+- YouTube upload is private and, after the screening passes, is scheduled to publish about 24 hours later by default. This is not a substitute for a human review; set AUTO_SCHEDULE=false to keep uploads private.
 - Failed jobs are marked failed in Actions logs; GitHub can notify you according to your notification settings.
 
 ## Important limitations / safety
 
-- The initial code uses simple keyword checks, not a reliable semantic child-safety review. For this reason, the workflow **uploads as private** by default. Review the first outputs before enabling public publishing.
-- Auto-publication is not enabled by default. For a future scheduled publish, set YOUTUBE_PUBLISH_AT as an RFC3339 UTC timestamp at least 15 minutes in the future, with YOUTUBE_PRIVACY_STATUS=private. The current workflow deliberately keeps uploads private until you've tested it.
+- The code uses basic checks plus a second Gemini screening pass. These can still miss harmful or unsuitable content; no automated model review is a guarantee. Inspect initial outputs manually.
+- The workflow uploads as private and asks YouTube to schedule publication about 24 hours later, after checks pass. Set AUTO_SCHEDULE=false in the workflow to disable scheduling and keep uploads private. YouTube scheduling requirements and channel eligibility still apply.
 - YouTube's selfDeclaredMadeForKids flag is set to true. Verify the setting matches the actual content and your channel's audience.
 - The pipeline does not create real character rigging or full AI motion. It animates generated still images.
 - A background track is optional. To include one, place a properly licensed track at assets/background_music.mp3, or set BACKGROUND_MUSIC_BASE64 as a repository secret. Do not use copyrighted music without permission.
